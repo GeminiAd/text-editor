@@ -11,7 +11,8 @@ const matchCallback = ({ request }) => {
   // console.log(request);
   return (request.destination === 'style' ||
     request.destination === 'script' ||
-    request.destination === 'image');
+    request.destination === 'image' ||
+    request.destination === 'manifest');
 }
 
 const pageCache = new CacheFirst({
