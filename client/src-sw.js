@@ -8,7 +8,6 @@ const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
 precacheAndRoute(self.__WB_MANIFEST);
 
 const matchCallback = ({ request }) => {
-  // console.log(request);
   return (request.destination === 'style' ||
     request.destination === 'script' ||
     request.destination === 'image' ||
@@ -34,11 +33,10 @@ warmStrategyCache({
 
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
-// TODO: Implement asset caching
 registerRoute(
   matchCallback,
   new CacheFirst({
-    cacheName: 'static-assets',
+    cacheName: 'asset-cache',
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
